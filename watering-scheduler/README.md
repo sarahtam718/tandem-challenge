@@ -11,7 +11,7 @@ MVP
   - remove weekends
   - return message if date is past 12 weeks
 
-XTRA
+XTRA [Saturday]
 
 - Group by date (for each date, show me plants to water)
 
@@ -29,13 +29,15 @@ XTRA
 
 ## Purpose
 
-Improve coding skills, apply for an incredible apprenticeship opportunity, and create a plant-watering schedule for the good people at Tandem for 12 weeks starting December 16th.
+This project improved my coding skills, helped me apply for an incredible apprenticeship opportunity, and acts as a plant-watering schedule for the good people at Tandem for 12 weeks starting December 16th.
+
+## Parameters
 
 The user can view which plants need watering on particular dates, based on JSON data regarding frequency of watering. Thankfully, Tandem sets wonderful work-boundaries for their employees, so there will be no watering dates on weekends (which only puts off a plant's watering by 1 day or so). It is possible to water all the plants in one day; all will be watered on the first day.
 
 ## Get Started
 
-Use npm start to get the server running
+Use npm start
 
 ## Technology
 
