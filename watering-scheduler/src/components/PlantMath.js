@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import plantData from './plantData.json';
 import Moment from 'react-moment';
+import moment from 'moment';
 
 // Empty global array to fill with dates to water each plant
-const startDate = '2019-12-16';
-let dateArr = [];
+const startDate = '2019-12-16 09';
+// let dateArr = [];
 
 export default class PlantMath extends Component {
   // for each plant, how many times will we have to water during the 12 weeks?
@@ -21,17 +22,30 @@ export default class PlantMath extends Component {
       // console.log(numOfWaterings);
       for (let j = 0; j <= numOfWaterings; j++) {
         let someNum = waterFreq * j;
-        // console.log(someNum);
-        dateArr.push({ name: eachPlant, date: someNum });
+        console.log('watering in days', someNum);
+        // for each iteration of someNum, add that number of days to startDate
+        let allTheDates = moment(startDate)
+          .add(`${someNum}`, 'days')
+          .calendar();
+        console.log('watering in calendar days??!!!', allTheDates);
+        // dateArr.push({ name: eachPlant, dayToWater: someNum });
       }
-      console.log('dateArray', dateArr);
     }
+    // console.log('dateArray', dateArr);
+  };
+
+  // figuring out how to use moment.js
+  formatDate = startDate => {
+    let niceDate = moment().format('dddd, MMM Do YYYY');
+    //console.log('is the date formatted?', niceDate);
   };
 
   render() {
+    this.wateringFrequency();
+    this.formatDate();
     return (
       <div>
-        <h3 first={this.wateringFrequency()}>Your Last Turn to Water is</h3>
+        <h3>Your Last Turn to Water is</h3>
         {/* end date is March 9th */}
         <Moment add={{ weeks: 12 }}>{startDate}</Moment>
       </div>
