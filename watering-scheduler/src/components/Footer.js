@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-import React, { Component } from 'react';
-
-export default class Footer extends Component {
-  render() {
-    return <div>Footer</div>;
-  }
+export default const Footer = () => {
+    return <div>Sarah Tam 2019</div>;
 }
