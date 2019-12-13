@@ -13,44 +13,45 @@ export default class PlantMath extends Component {
   wateringFrequency = () => {
     // console.log(plantData);
     const numOfDays = 12 * 7;
-    // console.log(numOfDays);
-    for (let i = 3; i < 4; i++) {
+
+    // for each plant...
+    for (let i = 0; i < plantData.length; i++) {
       let eachPlant = plantData[i].name;
       let waterFreq = plantData[i].water_after.split(' ')[0];
       //console.log(eachPlant, waterFreq);
       let numOfWaterings = numOfDays / Number(waterFreq);
       // console.log(numOfWaterings);
+
+      // for each opportunity to water...
       for (let j = 0; j <= numOfWaterings; j++) {
-        let someNum = waterFreq * j;
-        // console.log('watering in days', someNum);
-        // for each iteration of someNum, add that number of days to startDate
+        const wateringsNum = waterFreq * j;
+        // console.log('watering in days', wateringsNum);
+        // for each iteration of wateringsNum, add that number of days to startDate
         let allTheDates = moment(startDate)
-          .add(`${someNum}`, 'days')
+          .add(`${wateringsNum}`, 'days')
           .format('dddd, MMMM Do YYYY');
 
+        // we have start & end date, but what about weekends?
         if (allTheDates.includes('Saturday')) {
-          console.log('Weekend Alert', allTheDates);
+          let newDate = moment(startDate)
+            .add(`${wateringsNum - 1}`, 'days')
+            .format('dddd, MMMM Do YYYY');
+          dateArr.push({ name: eachPlant, dateToWater: newDate });
         } else if (allTheDates.includes('Sunday')) {
-          console.log('More Weekend', allTheDates);
+          let newDate = moment(startDate)
+            .add(`${wateringsNum + 1}`, 'days')
+            .format('dddd, MMMM Do YYYY');
+          dateArr.push({ name: eachPlant, dateToWater: newDate });
         } else {
-          console.log('No worries');
+          dateArr.push({ name: eachPlant, dateToWater: allTheDates });
         }
 
         // console.log('watering in calendar days??!!!', allTheDates);
-        // we have start & end date, but what about weekends?
-
-        dateArr.push({ name: eachPlant, dateToWater: allTheDates });
       }
     }
-    console.log('dateArray', dateArr);
-  };
 
-  //   // figuring out how to use moment.js
-  //   formatDate = () => {
-  //     console.log('formatDate working');
-  //     let niceDate = moment().format('dddd, MMM Do YYYY');
-  //     //console.log('is the date formatted?', niceDate);
-  //   };
+    //console.log('dateArray', dateArr);
+  };
 
   render() {
     this.wateringFrequency();
