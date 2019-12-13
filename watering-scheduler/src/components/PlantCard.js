@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import React, { Component } from 'react';
+const PlantCard = () => {
+  return (
+    <div>
+      <h3>Plant Name</h3>
+      <p>date</p>
+      <p>date</p>
+      <p>date</p>
+      <p>date</p>
+      <p>date</p>
+    </div>
+  );
+};
 
-export default class PlantCard extends Component {
-  render() {
-    return <div>PlantCard</div>;
-  }
-}
+export default PlantCard;

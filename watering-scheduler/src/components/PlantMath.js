@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import plantData from './plantData.json';
 //import Moment from 'react-moment';
 import moment from 'moment';
+import PlantCard from './PlantCard';
 
 // Empty global array to fill with dates to water each plant
 const startDate = '2019-12-16 09';
@@ -66,6 +67,6 @@ export default class PlantMath extends Component {
   };
 
   render() {
-    return <h1>Tandelorian Watering Schedule</h1>;
+    return <PlantCard />;
   }
 }

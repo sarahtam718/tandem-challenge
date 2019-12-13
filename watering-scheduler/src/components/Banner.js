@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-import React, { Component } from 'react';
+const Banner = () => {
+  return <h1>Watering Schedule</h1>;
+};
 
-export default class Banner extends Component {
-  render() {
-    return <div>Banner</div>;
-  }
-}
+export default Banner;
