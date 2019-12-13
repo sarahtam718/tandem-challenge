@@ -4,10 +4,10 @@
 
 MVP
 
-- find how many times to water
-- successfully employ npm package react-moment
-- find out on which specific date (day of the month & day of the week) waterings would occur based on start and end dates
-- add conditions
+- find how many times to water [DONE]
+- successfully employ npm package moment [DONE]
+- find out on which specific date (day of the month & day of the week) waterings would occur based on start and end dates [DONE]
+- add conditions [DONE]
   - remove weekends
   - return message if date is past 12 weeks
 

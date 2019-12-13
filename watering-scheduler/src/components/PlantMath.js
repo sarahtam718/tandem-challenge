@@ -8,53 +8,57 @@ const startDate = '2019-12-16 09';
 let dateArr = [];
 
 export default class PlantMath extends Component {
-  // for each plant, how many times will we have to water during the 12 weeks?
-  // we need total days of watering divided by frequency of watering (Ex. Need to see dentist every 6 months in a year, so 12 total months in a year / 6 months frequency = 2x per year)
+  componentDidMount = () => {
+    // I want this function to run basically right away
+    this.wateringFrequency();
+  };
+
+  // for each plant, how many times will a Tandelorian have to water during the 12 weeks?
   wateringFrequency = () => {
     // console.log(plantData);
     const numOfDays = 12 * 7;
 
     // for each plant...
     for (let i = 0; i < plantData.length; i++) {
-      let eachPlant = plantData[i].name;
+      // separate plan name to keep things simple
+      let name = plantData[i].name;
+      // get rid of "days" so we just have the number
       let waterFreq = plantData[i].water_after.split(' ')[0];
-      //console.log(eachPlant, waterFreq);
-      let numOfWaterings = numOfDays / Number(waterFreq);
-      // console.log(numOfWaterings);
+      //console.log(name, waterFreq);
+      // take the total number of days to water and divide by the frequency
+      let numOfWaterings = numOfDays / waterFreq;
 
       // for each opportunity to water...
       for (let j = 0; j <= numOfWaterings; j++) {
         const wateringsNum = waterFreq * j;
         // console.log('watering in days', wateringsNum);
         // for each iteration of wateringsNum, add that number of days to startDate
-        let allTheDates = moment(startDate)
+        let dateToWater = moment(startDate)
           .add(`${wateringsNum}`, 'days')
           .format('dddd, MMMM Do YYYY');
 
         // we have start & end date, but what about weekends?
-        if (allTheDates.includes('Saturday')) {
+        if (dateToWater.includes('Saturday')) {
           let newDate = moment(startDate)
             .add(`${wateringsNum - 1}`, 'days')
             .format('dddd, MMMM Do YYYY');
-          dateArr.push({ name: eachPlant, dateToWater: newDate });
-        } else if (allTheDates.includes('Sunday')) {
+          dateArr.push({ name: name, dateToWater: newDate });
+        } else if (dateToWater.includes('Sunday')) {
           let newDate = moment(startDate)
             .add(`${wateringsNum + 1}`, 'days')
             .format('dddd, MMMM Do YYYY');
-          dateArr.push({ name: eachPlant, dateToWater: newDate });
+          dateArr.push({ name: name, dateToWater: newDate });
         } else {
-          dateArr.push({ name: eachPlant, dateToWater: allTheDates });
+          dateArr.push({ name: name, dateToWater: dateToWater });
         }
-
-        // console.log('watering in calendar days??!!!', allTheDates);
+        // console.log('watering in calendar days??!!!', dateToWater);
       }
     }
 
-    //console.log('dateArray', dateArr);
+    console.log('dateArray', dateArr);
   };
 
   render() {
-    this.wateringFrequency();
     return (
       <div>
         <h3>Your Last Turn to Water is</h3>
