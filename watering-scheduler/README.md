@@ -26,3 +26,24 @@ XTRA
 
 - Cards for each date, arranged in calendar
 - Today-specific watering
+
+## Purpose
+
+Improve coding skills, apply for an incredible apprenticeship opportunity, and create a plant-watering schedule for the good people at Tandem for 12 weeks starting December 16th.
+
+The user can view which plants need watering on particular dates, based on JSON data regarding frequency of watering. Thankfully, Tandem sets wonderful work-boundaries for their employees, so there will be no watering dates on weekends (which only puts off a plant's watering by 1 day or so). It is possible to water all the plants in one day; all will be watered on the first day.
+
+## Get Started
+
+Use npm start to get the server running
+
+## Technology
+
+React.js + moment.js package
+
+## Future Development
+
+- Ability to enter name or list of names to rotate sign ups to water
+- Assign people certain plants to water and only show that plant & its dates to that user when they enter their name
+- Add new plants & their schedules to the app
+- Check off completed waterings (if not checked, that plant's name rolls over to the next day)

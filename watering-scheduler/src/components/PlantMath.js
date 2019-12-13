@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import plantData from './plantData.json';
-import Moment from 'react-moment';
+//import Moment from 'react-moment';
 import moment from 'moment';
 
 // Empty global array to fill with dates to water each plant
@@ -11,6 +11,14 @@ export default class PlantMath extends Component {
   componentDidMount = () => {
     // I want this function to run basically right away
     this.wateringFrequency();
+
+    // trying to group by date (more user-friendly)
+    for (let k = 0; k < dateArr.length; k++) {
+      const element = dateArr[k].dateToWater;
+      // I want to group plants based on date, so may need some kind of comparison...
+      // if date1 = date2, then push plant name into date 1?
+      // console.log(element);
+    }
   };
 
   // for each plant, how many times will a Tandelorian have to water during the 12 weeks?
@@ -54,17 +62,10 @@ export default class PlantMath extends Component {
         // console.log('watering in calendar days??!!!', dateToWater);
       }
     }
-
-    console.log('dateArray', dateArr);
+    //console.log('dateArray', dateArr);
   };
 
   render() {
-    return (
-      <div>
-        <h3>Your Last Turn to Water is</h3>
-        {/* end date is March 9th */}
-        <Moment add={{ weeks: 12 }}>{startDate}</Moment>
-      </div>
-    );
+    return <h1>Tandelorian Watering Schedule</h1>;
   }
 }
