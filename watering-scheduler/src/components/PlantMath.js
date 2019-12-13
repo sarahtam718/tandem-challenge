@@ -3,8 +3,8 @@ import plantData from './plantData.json';
 import Moment from 'react-moment';
 
 // Empty global array to fill with dates to water each plant
-let wateringDates = [];
 const startDate = '2019-12-16';
+let dateArr = [];
 
 export default class PlantMath extends Component {
   // for each plant, how many times will we have to water during the 12 weeks?
@@ -18,53 +18,15 @@ export default class PlantMath extends Component {
       let waterFreq = plantData[i].water_after.split(' ')[0];
       //console.log(eachPlant, waterFreq);
       let numOfWaterings = numOfDays / Number(waterFreq);
-      console.log(numOfWaterings);
-      for (let j = 0; j < numOfWaterings; j++) {
-        console.log(
-          eachPlant,
-          'says water me! My frequency is',
-          waterFreq,
-          'days'
-        );
+      // console.log(numOfWaterings);
+      for (let j = 0; j <= numOfWaterings; j++) {
+        let someNum = waterFreq * j;
+        // console.log(someNum);
+        dateArr.push({ name: eachPlant, date: someNum });
       }
-      // --------------------------------------
-      //   for (let i = 0; i < plantData.length; i++) {
-      //     let eachPlant = plantData[i].name;
-      //     let waterFreq = plantData[i].water_after.split(' ')[0];
-      //     //console.log(eachPlant, waterFreq);
-      //     let numOfWaterings = numOfDays / Number(waterFreq);
-      //     console.log(numOfWaterings);
-      //     for (let j = 0; j < numOfWaterings; j++) {
-      //       console.log(eachPlant, 'water me!');
-      //     }
-      // -------------------------------
-      //   console.log(numOfWaterings);
-      //   for (let j = 0; j < numOfWaterings; j++) {
-      //     console.log(eachPlant, 'water me!');
-      //   }
-
-      // now we can push the name of the plant and the # of waterings
-      //   wateringDates.push({
-      //     eachPlant: eachPlant,
-      //     numOfWaterings: numOfWaterings
-      //   });
-
-      //   let something = wateringDates[i].numOfWaterings;
+      console.log('dateArray', dateArr);
     }
-
-    // for (let k = 0; k < wateringDates.length; k++) {
-    //   console.log(wateringDates[k].eachPlant, something);
-    // }
-    // console.log(wateringDates);
   };
-
-  // What are the specific dates for these waterings?
-  //   waterMeOn = () => {
-  //     for (let i = 0; i < wateringDates.length; i++) {
-  //       console.log(wateringDates[i].numOfWaterings);
-  //       console.log(plantData);
-  //     }
-  //   };
 
   render() {
     return (
