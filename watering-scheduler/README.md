@@ -37,7 +37,7 @@ The user can view which plants need watering on particular dates, based on JSON 
 
 ## Get Started
 
-Use npm start
+Use npm start in terminal from within 'watering-scheduler'
 
 ## Technology
 

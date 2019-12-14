@@ -1,14 +1,10 @@
 import React from 'react';
 
-const PlantCard = () => {
+const PlantCard = props => {
   return (
     <div>
-      <h3>Plant Name</h3>
-      <p>date</p>
-      <p>date</p>
-      <p>date</p>
-      <p>date</p>
-      <p>date</p>
+      <h3>{props.obj.name}</h3>
+      <p>map over dates</p>
     </div>
   );
 };

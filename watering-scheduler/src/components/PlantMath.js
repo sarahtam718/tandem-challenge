@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import plantData from './plantData.json';
-//import Moment from 'react-moment';
 import moment from 'moment';
-import PlantCard from './PlantCard';
+// import PlantCard from './PlantCard';
 
-// Empty global array to fill with dates to water each plant
+// <future dev> the start date could definitely be dynamically pulled from a form
 const startDate = '2019-12-16 09';
-let dateArr = [];
+// Empty global array to fill with dates to water each plant
+let plantArr = [];
 
 export default class PlantMath extends Component {
   componentDidMount = () => {
@@ -14,12 +14,12 @@ export default class PlantMath extends Component {
     this.wateringFrequency();
 
     // trying to group by date (more user-friendly)
-    for (let k = 0; k < dateArr.length; k++) {
-      const element = dateArr[k].dateToWater;
-      // I want to group plants based on date, so may need some kind of comparison...
-      // if date1 = date2, then push plant name into date 1?
-      // console.log(element);
-    }
+    // for (let k = 0; k < plantArr.length; k++) {
+    //   const element = plantArr[k].dateToWater;
+    // I want to group plants based on date, so may need some kind of comparison...
+    // if date1 = date2, then push plant name into date 1?
+    // console.log(element);
+    // }
   };
 
   // for each plant, how many times will a Tandelorian have to water during the 12 weeks?
@@ -36,6 +36,7 @@ export default class PlantMath extends Component {
       //console.log(name, waterFreq);
       // take the total number of days to water and divide by the frequency
       let numOfWaterings = numOfDays / waterFreq;
+      let datesArr = [];
 
       // for each opportunity to water...
       for (let j = 0; j <= numOfWaterings; j++) {
@@ -45,28 +46,39 @@ export default class PlantMath extends Component {
         let dateToWater = moment(startDate)
           .add(`${wateringsNum}`, 'days')
           .format('dddd, MMMM Do YYYY');
+        // console.log(name, dateToWater);
+        datesArr.push(dateToWater);
+        // console.log(datesArr);
+        // I want the date array to look like let plantArr = [{ name: name, dates: [] }, { name: name, dates: []}];
 
+        // plantArr.push({ name: name, dateToWater: newDate });
         // we have start & end date, but what about weekends?
-        if (dateToWater.includes('Saturday')) {
-          let newDate = moment(startDate)
-            .add(`${wateringsNum - 1}`, 'days')
-            .format('dddd, MMMM Do YYYY');
-          dateArr.push({ name: name, dateToWater: newDate });
-        } else if (dateToWater.includes('Sunday')) {
-          let newDate = moment(startDate)
-            .add(`${wateringsNum + 1}`, 'days')
-            .format('dddd, MMMM Do YYYY');
-          dateArr.push({ name: name, dateToWater: newDate });
-        } else {
-          dateArr.push({ name: name, dateToWater: dateToWater });
-        }
+        // if (dateToWater.includes('Saturday')) {
+        //   let newDate = moment(startDate)
+        //     .add(`${wateringsNum - 1}`, 'days')
+        //     .format('dddd, MMMM Do YYYY');
+        //   plantArr.push({ name: name, dateToWater: newDate });
+        // } else if (dateToWater.includes('Sunday')) {
+        //   let newDate = moment(startDate)
+        //     .add(`${wateringsNum + 1}`, 'days')
+        //     .format('dddd, MMMM Do YYYY');
+        //   plantArr.push({ name: name, dateToWater: newDate });
+        // } else {
+        //   plantArr.push({ name: name, dateToWater: dateToWater });
+        // }
         // console.log('watering in calendar days??!!!', dateToWater);
       }
+      // console.log(datesArr);
+      plantArr.push({ name: name, dates: [datesArr] });
     }
-    //console.log('dateArray', dateArr);
+    console.log('plantArray', plantArr);
   };
 
   render() {
-    return <PlantCard />;
+    return (
+      <div className='card-container'>
+        <h3>Plant</h3>
+      </div>
+    );
   }
 }
