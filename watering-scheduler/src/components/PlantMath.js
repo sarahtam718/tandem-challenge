@@ -10,17 +10,10 @@ const startDate = '2019-12-16 09';
 let plantArr = [];
 
 export default class PlantMath extends Component {
+  // this lifecycle method solve my issue of wanting to run my function right away, but definitely need to investigate a better solution
   componentWillMount = () => {
-    // I want this function to run basically right away
     this.wateringFrequency();
     //  this.mapTry();
-    // trying to group by date (more user-friendly)
-    // for (let k = 0; k < plantArr.length; k++) {
-    //   const element = plantArr[k].dateToWater;
-    // I want to group plants based on date, so may need some kind of comparison...
-    // if date1 = date2, then push plant name into date 1?
-    // console.log(element);
-    // }
   };
 
   // for each plant, how many times will a Tandelorian have to water during the 12 weeks?
