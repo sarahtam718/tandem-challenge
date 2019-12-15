@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import plantData from './plantData.json';
 import moment from 'moment';
+import PlantCard from './PlantCard.js';
 // import PlantCard from './PlantCard';
 
 // <future dev> the start date could definitely be dynamically pulled from a form
@@ -9,10 +10,10 @@ const startDate = '2019-12-16 09';
 let plantArr = [];
 
 export default class PlantMath extends Component {
-  componentDidMount = () => {
+  componentWillMount = () => {
     // I want this function to run basically right away
     this.wateringFrequency();
-
+    //  this.mapTry();
     // trying to group by date (more user-friendly)
     // for (let k = 0; k < plantArr.length; k++) {
     //   const element = plantArr[k].dateToWater;
@@ -47,37 +48,47 @@ export default class PlantMath extends Component {
           .add(`${wateringsNum}`, 'days')
           .format('dddd, MMMM Do YYYY');
         // console.log(name, dateToWater);
-        datesArr.push(dateToWater);
-        // console.log(datesArr);
-        // I want the date array to look like let plantArr = [{ name: name, dates: [] }, { name: name, dates: []}];
+        // datesArr.push(dateToWater);
 
-        // plantArr.push({ name: name, dateToWater: newDate });
-        // we have start & end date, but what about weekends?
-        // if (dateToWater.includes('Saturday')) {
-        //   let newDate = moment(startDate)
-        //     .add(`${wateringsNum - 1}`, 'days')
-        //     .format('dddd, MMMM Do YYYY');
-        //   plantArr.push({ name: name, dateToWater: newDate });
-        // } else if (dateToWater.includes('Sunday')) {
-        //   let newDate = moment(startDate)
-        //     .add(`${wateringsNum + 1}`, 'days')
-        //     .format('dddd, MMMM Do YYYY');
-        //   plantArr.push({ name: name, dateToWater: newDate });
-        // } else {
-        //   plantArr.push({ name: name, dateToWater: dateToWater });
-        // }
-        // console.log('watering in calendar days??!!!', dateToWater);
+        //  we have start & end date, but what about weekends?
+        if (dateToWater.includes('Saturday')) {
+          let newDate = moment(startDate)
+            .add(`${wateringsNum - 1}`, 'days')
+            .format('dddd, MMMM Do YYYY');
+          datesArr.push(newDate);
+        } else if (dateToWater.includes('Sunday')) {
+          let newDate = moment(startDate)
+            .add(`${wateringsNum + 1}`, 'days')
+            .format('dddd, MMMM Do YYYY');
+          datesArr.push(newDate);
+        } else {
+          datesArr.push(dateToWater);
+        }
       }
       // console.log(datesArr);
       plantArr.push({ name: name, dates: [datesArr] });
     }
-    console.log('plantArray', plantArr);
+    //  console.log('plantArray', plantArr);
   };
+
+  // mapTry = () => {
+  //   plantArr.map((plant, index) => {
+  //     console.log(plant.name);
+  //   });
+  // };
 
   render() {
     return (
       <div className='card-container'>
-        <h3>Plant</h3>
+        {plantArr.map((plant, index) => {
+          // console.log(plant);
+          // console.log('index key', index); <--- key is unique, so another factor must be at play >> @self investigate when you have time
+          return (
+            <div>
+              <PlantCard obj={plant} key={index} />
+            </div>
+          );
+        })}
       </div>
     );
   }
