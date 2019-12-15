@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import plantData from './plantData.json';
 import moment from 'moment';
-import PlantCard from './PlantCard.js';
-// import PlantCard from './PlantCard';
 
 // <future dev> the start date could definitely be dynamically pulled from a form
 const startDate = '2019-12-16 09';
@@ -72,13 +70,14 @@ export default class PlantMath extends Component {
 
   render() {
     return (
-      <div className='card-container'>
-        {plantArr.map((plant, index) => {
-          // console.log(plant);
-          // console.log('index key', index); <--- key is unique, so another factor must be at play >> @self investigate when you have time
+      <div>
+        {plantArr.map(({ name, dates }, j) => {
           return (
             <div>
-              <PlantCard obj={plant} key={index} />
+              <h1 key={j}>{name}</h1>
+              {dates.map((d, i) => {
+                return <ul key={i}>{d}</ul>;
+              })}
             </div>
           );
         })}
