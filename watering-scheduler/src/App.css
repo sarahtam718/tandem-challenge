@@ -1,0 +1,42 @@
+* {
+  background-color: #499458;
+  color: white;
+}
+
+.banner {
+  font-size: 100px;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+}
+
+h1 {
+  font-family: 'Poiret One', cursive;
+}
+
+.plant-container {
+  padding: 20px;
+  letter-spacing: 1.2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.plant-card:hover {
+  /* width: 90%; */
+  border: 2px solid white;
+}
+
+.plant-card {
+  padding: 20px;
+}
+
+.dates-list {
+  font-size: 22px;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.footer {
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 10px;
+}

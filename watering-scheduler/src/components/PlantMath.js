@@ -37,7 +37,7 @@ export default class PlantMath extends Component {
         // for each iteration of wateringsNum, add that number of days to startDate
         let dateToWater = moment(startDate)
           .add(`${wateringsNum}`, 'days')
-          .format('dddd, MMMM Do YYYY');
+          .format('dddd, MMMM Do YYYY; ');
         // console.log(name, dateToWater);
         // datesArr.push(dateToWater);
 
@@ -45,12 +45,12 @@ export default class PlantMath extends Component {
         if (dateToWater.includes('Saturday')) {
           let newDate = moment(startDate)
             .add(`${wateringsNum - 1}`, 'days')
-            .format('dddd, MMMM Do YYYY');
+            .format('dddd, MMMM Do YYYY; ');
           datesArr.push(newDate);
         } else if (dateToWater.includes('Sunday')) {
           let newDate = moment(startDate)
             .add(`${wateringsNum + 1}`, 'days')
-            .format('dddd, MMMM Do YYYY');
+            .format('dddd, MMMM Do YYYY; ');
           datesArr.push(newDate);
         } else {
           datesArr.push(dateToWater);
@@ -70,14 +70,17 @@ export default class PlantMath extends Component {
 
   render() {
     return (
-      <div>
+      <div className='plant-container'>
         {plantArr.map(({ name, dates }, j) => {
           return (
-            <div>
+            <div className='plant-card'>
               <h1 key={j}>{name}</h1>
-              {dates.map((d, i) => {
-                return <ul key={i}>{d}</ul>;
-              })}
+              {/* this map function is treating the entire array as one value instead of elements in an array - continue investigating how to fix this */}
+              <div className='dates-list'>
+                {dates.map((d, i) => {
+                  return <ul key={i}>{d}</ul>;
+                })}
+              </div>
             </div>
           );
         })}

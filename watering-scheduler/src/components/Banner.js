@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Banner = () => {
-  return <h1>Watering Schedule</h1>;
+  return <div className='banner'>Watering Schedule</div>;
 };
 
 export default Banner;
