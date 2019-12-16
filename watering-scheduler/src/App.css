@@ -3,10 +3,18 @@
   color: white;
 }
 
-.banner {
-  font-size: 100px;
+.banner-container {
   text-align: center;
   font-family: 'Poiret One', cursive;
+  border-bottom: 15px;
+}
+
+.banner {
+  font-size: 100px;
+}
+
+.sub-banner {
+  font-size: 30px;
 }
 
 h1 {
@@ -22,7 +30,6 @@ h1 {
 }
 
 .plant-card:hover {
-  /* width: 90%; */
   border: 2px solid white;
 }
 
@@ -33,6 +40,7 @@ h1 {
 .dates-list {
   font-size: 22px;
   font-family: 'Tajawal', sans-serif;
+  padding-right: 20px;
 }
 
 .footer {

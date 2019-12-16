@@ -4,7 +4,7 @@ import moment from 'moment';
 
 // <future dev> the start date could definitely be dynamically pulled from a form
 const startDate = '2019-12-16 09';
-// Empty global array to fill with dates to water each plant
+// Empty array to store with the plant name & dates to water each plant
 let plantArr = [];
 
 export default class PlantMath extends Component {
@@ -57,11 +57,13 @@ export default class PlantMath extends Component {
         }
       }
       // console.log(datesArr);
+      // pushing an object with the plant name and dates for watering together
       plantArr.push({ name: name, dates: [datesArr] });
     }
     //  console.log('plantArray', plantArr);
   };
 
+  // problem-solving my mapping issue in render below...
   // mapTry = () => {
   //   plantArr.map((plant, index) => {
   //     console.log(plant.name);
